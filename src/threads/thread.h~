@@ -98,7 +98,7 @@ struct thread
     int originalPriority;
     struct list_elem donor_list_elem;
     struct list donor_list;
-    struct thread * donee;
+    struct thread * donatee;
 
     /* Shared between thread.c and synch.c. */
     struct list_elem elem;              /* List element. */

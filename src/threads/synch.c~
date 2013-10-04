@@ -273,8 +273,7 @@ lock_release (struct lock *lock)
 
     if (!list_empty(&lock->holder->donor_list))
     {
-      lock->holder->priority = list_entry(list_max(&lock->holder->donor_list, donor_priority_less, NULL), 
-        struct thread, donor_list_elem)->priority;
+      list_entry(list_max(&lock->holder->donor_list, synch_priority_less
     }
     else
     {

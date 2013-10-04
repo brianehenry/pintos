@@ -199,8 +199,6 @@ timer_interrupt (struct intr_frame *args UNUSED)
   ticks++;
   
   thread_tick ();
-
-  // added, wakes up blocked threads when alarm time reached
   if (!list_empty(&wait_list))
   {
     struct thread *first = list_entry (list_front(&wait_list), struct thread, wait_list_elem);
@@ -210,9 +208,6 @@ timer_interrupt (struct intr_frame *args UNUSED)
       sema_up(&first->s);
     }
   }
-
-  // added, yields thread to higher priority thread
-  thread_yield_to_higher_priority();
 }
 
 /* Returns true if LOOPS iterations waits for more than one timer
